@@ -28,7 +28,7 @@ Se o painel do Agent DVR abrir no computador, mas o mosaico ficar vazio, teste o
 
 ## Temas
 
-Prévias da tela inicial da edição pública, renderizadas no navegador em formato 16:9.
+Prévias da configuração de referência da TV, renderizadas no navegador a 1920 × 1080 com os ícones e o dimensionamento de cada tema. O IPK público inclui um conjunto menor de ícones. No Liquid Glass, a previsão ilustrativa mostra como o cabeçalho aparece após selecionar uma cidade em Preferências.
 
 ### Liquid Glass
 
