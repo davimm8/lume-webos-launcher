@@ -1,0 +1,25 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><script src="network.js"></script><style>html,body{margin:0;min-height:100%;background:#101722}body.solo main header{display:none!important}body.solo #wall button{height:100vh}body.solo #wall img{height:100vh}body.solo #wall .strip{position:absolute;top:1.5vh;left:auto;right:1.5vw;bottom:auto;width:auto;height:auto;background:rgba(10,18,24,.78);color:white}body.solo #wall .strip small{display:none}body.solo .camera-actions{position:absolute;bottom:7vh;left:2vw;right:auto;height:auto;background:transparent;display:flex;align-items:center;padding:0}body.solo #exit{position:static;margin:0}
+</style><title>Câmeras · Lume</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="costa.css"><link rel="stylesheet" href="atelier.css"><style>
+main{width:90vw;padding:4vh 0}section{margin-top:4vh}h1{margin:1vh 0 3vh;font-size:4vw}#wall{display:flex}#wall button{position:relative;width:49%;margin:0 1% 0 0;padding:0;border-radius:.8vw;overflow:hidden;background:#10171d}#wall img{display:block;width:100%;height:50vh;object-fit:contain}.strip{display:flex;align-items:center;justify-content:space-between;padding:.75vw 1vw;background:#122124;color:#fff}.strip b{font-size:1.6vw}.strip small{font-size:1vw;color:#c1d5cc;letter-spacing:.04em}#exit{margin-top:2vh;padding:.5em 1em;font-size:1.3vw}#help{display:inline-block;margin-left:1vw;font-size:1.2vw}#time{font-size:2vw}.solo main{padding:0;width:100vw}.solo header,.solo h1,.solo section>small,.solo #help{display:none}.solo section{margin:0}.solo #wall button{width:100vw;height:100vh;margin:0;border:0;border-radius:0}.solo #wall img{height:100vh}.solo .strip{position:absolute;top:1vh;left:1vw;background:rgba(8,15,18,.75);border-radius:.4em}.solo .strip small{margin-left:1em}.solo #exit{position:absolute;bottom:2vh;left:2vw}.solo #wall button[hidden]{display:none}
+body:not(.solo) header{width:80.5vw;margin:0 auto}.solo header{display:block;position:absolute;z-index:2;right:2vw;top:1vh;padding:0;border:0;pointer-events:none}.solo header b{display:none}.solo .clock{text-shadow:0 2px 5px #000;background:rgba(0,0,0,.35);border-radius:.4vw;padding:0 .45vw}body:not(.solo) main{height:100vh;padding:3vh 0 5vh;display:flex;flex-direction:column}
+body:not(.solo) header{flex:none;padding-bottom:1.5vh}
+body:not(.solo) section{flex:1;min-height:0;display:flex;flex-direction:column;margin-top:2vh}
+body:not(.solo) h1{font-size:3.2vw;margin:.3vh 0 1.5vh}
+body:not(.solo) #wall{flex:1;min-height:0}
+body:not(.solo) #wall img{position:absolute;top:0;left:0;width:100%;height:calc(100% - 5.3vh)}
+body:not(.solo) .strip{position:absolute;bottom:0;left:0;width:100%;height:5.3vh}
+body:not(.solo) .camera-actions{flex:none;display:flex;align-items:center;padding-top:1.8vh}
+body:not(.solo) #exit{margin:0}
+body.solo main header{display:none!important}body.solo #wall button{height:100vh}body.solo #wall img{height:100vh}body.solo #wall .strip{position:absolute;top:1.5vh;left:auto;right:1.5vw;bottom:auto;width:auto;height:auto;background:rgba(10,18,24,.78);color:white}body.solo #wall .strip small{display:none}body.solo .camera-actions{position:absolute;bottom:7vh;left:2vw;right:auto;height:auto;background:transparent;display:flex;align-items:center;padding:0}body.solo #exit{position:static;margin:0}
+</style><body><script src="themes.js"></script><script src="atelier-data.js"></script><script src="costa.js"></script><script>document.body.setAttribute("data-screen","cameras");if(window.lumeTheme==="costa"){Costa.style(document.body);Costa.boot()}</script><script src="theme-prefs.js"></script><main><header><div class="clock"><strong id="hour"></strong><span id="date"></span></div></header><section><small>REDE LOCAL</small><h1>Câmeras</h1><div id="wall"></div><div class="camera-actions"><button id="exit">Voltar</button><span id="help">← → Escolher &emsp; OK Ampliar</span></div></section></main><script src="clock.js"></script><script src="cameras.js"></script><script src="parks.js"></script></body></html>
+
+
+
+
+
+
+
+
+
+
+

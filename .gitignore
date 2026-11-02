@@ -1,0 +1,12 @@
+.env*
+*.pem
+*.key
+*.ppk
+.ssh/
+.webos/
+.npmrc
+node_modules/
+*.log
+*.aux
+*.out
+work/

@@ -1,0 +1,2 @@
+(function(){function $(id){return document.getElementById(id)}function clock(){var n=new Date(),pad=function(x){return ('0'+x).slice(-2)};$('hour').textContent=(window.lumeTheme==='costa'&&(!window.Costa||Costa.values.clock==='12')?String(n.getHours()%12||12):pad(n.getHours()))+':'+pad(n.getMinutes());$('date').textContent=['domingo','segunda','terça','quarta','quinta','sexta','sábado'][n.getDay()]+', '+pad(n.getDate())+'/'+pad(n.getMonth()+1)+'/'+n.getFullYear();setTimeout(clock,60000-n.getSeconds()*1000-n.getMilliseconds()+30)}clock();})();
+

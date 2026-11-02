@@ -1,0 +1,64 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=24mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\pdfsuppressptexinfo=15
+\pdfinfoomitdate=1
+\hypersetup{pdftitle={Instalar o Lume em uma TV LG},pdfauthor={Projeto Lume}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\begin{document}
+\sloppy
+{\LARGE\bfseries Instalar o Lume em uma TV LG}\\[4pt]
+Edição pública 1.0.0 \quad|\quad PowerShell no Windows
+\section*{1. Prepare a TV e o computador}
+Use uma TV LG com webOS e o aplicativo \textbf{Developer Mode} disponível na loja. O alvo inicial é webOS TV 4.x. Conecte TV e computador à mesma rede. Redes de convidados podem isolar dispositivos.
+
+Na loja da TV, instale \textbf{Developer Mode}, entre com sua conta LG Developer, ative \textbf{Dev Mode Status} e aceite a reinicialização. Reabra o aplicativo, ative \textbf{Key Server} e anote o IPv4 da TV. Mantenha essa tela aberta durante o pareamento.
+
+No computador, instale Node.js com npm seguindo os requisitos da \href{https://webostv.developer.lge.com/develop/tools/cli-installation}{LG}. Abra uma nova janela do PowerShell e execute uma linha por vez:
+\begin{verbatim}
+node -v
+npm.cmd -v
+npm.cmd install -g @webos-tools/cli
+ares.cmd -V
+ares-config.cmd --profile tv
+\end{verbatim}
+Se um comando recém-instalado não for reconhecido, reabra o terminal e confira se o diretório global do npm está no PATH.
+\section*{2. Cadastre e pareie a TV}
+Use o cadastro interativo para evitar erros de digitação:
+\begin{verbatim}
+ares-setup-device.cmd
+\end{verbatim}
+Escolha \textbf{add}. Informe o apelido \verb|minha-tv|, o IPv4 exibido na TV, a porta \textbf{9922} e o usuário \textbf{prisoner}. Aceite os demais valores padrão e confirme o cadastro. Em seguida:
+\begin{verbatim}
+ares-novacom.cmd -d minha-tv --getkey
+ares-device.cmd -d minha-tv --system-info
+\end{verbatim}
+Digite a passphrase mostrada na TV apenas no terminal. O último comando deve mostrar informações da TV. Em caso de timeout, substitua \verb|IP_DA_TV| em \verb|Test-NetConnection IP_DA_TV -Port 9922| e confira a rede. Se a porta responder e a autenticação falhar, reative o Key Server e repita a obtenção da chave.
+\newpage
+\section*{3. Instale e abra}
+Baixe \verb|com.lume.launcher_1.0.0_all.ipk| da pasta \textbf{downloads} do projeto. Abra o PowerShell na pasta onde salvou o arquivo:
+\begin{verbatim}
+ares-install.cmd -d minha-tv .\com.lume.launcher_1.0.0_all.ipk
+ares-launch.cmd -d minha-tv com.lume.launcher
+\end{verbatim}
+Confirme que o Lume abriu e que as setas movem a seleção. Nas próximas vezes, abra Lume pela lista de aplicativos da LG. O botão Home físico continua abrindo a interface definida pela TV.
+\section*{4. Configure os recursos opcionais}
+\begin{itemize}
+\item \textbf{Apps e temas.} Em Demais apps, atualize a lista e aceite na TV a consulta aos aplicativos instalados. Em Preferências, escolha o tema e organize os cartões. A cidade da previsão é opcional.
+\item \textbf{Câmeras.} Abra Preferências e selecione Servidores locais. Informe o endereço do Agent DVR com protocolo, IPv4 privado e porta. No campo de câmeras, informe um ou dois IDs numéricos. Abra Câmeras para ver o mosaico. O servidor precisa permitir que a TV leia os endpoints de imagem.
+\item \textbf{Galeria.} No mesmo menu, informe o endereço do Immich. Ao abrir Galeria, digite na TV uma chave da sua conta com permissão para ler as fotos, álbuns e metadados desejados. Prefira HTTPS. Com HTTP, a chave trafega sem criptografia. Para encerrar o acesso, revogue a chave no Immich e limpe o endereço na TV.
+\end{itemize}
+\section*{5. Renove a sessão ou desinstale}
+Confira o tempo restante no Developer Mode e use \textbf{Extend} enquanto a sessão estiver ativa. Ao desativar ou deixar expirar o modo de desenvolvimento, os aplicativos de desenvolvimento podem ser removidos. Para reinstalar, repita o pareamento se necessário e instale o IPK.
+\begin{verbatim}
+ares-install.cmd -d minha-tv --remove com.lume.launcher
+ares-setup-device.cmd --remove minha-tv
+\end{verbatim}
+A primeira linha remove o Lume da TV. A segunda remove o cadastro da TV no computador. Para remover a CLI, use \verb|npm.cmd uninstall -g @webos-tools/cli|.
+
+\textbf{Para reconstruir.} Na raiz do repositório, execute \verb|ares-package.cmd app service -o downloads|. Consulte também o \href{https://webostv.developer.lge.com/develop/getting-started/developer-mode-app}{guia oficial de Developer Mode da LG}.
+\end{document}
+

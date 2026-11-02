@@ -1,0 +1,2 @@
+(function(){if(window.lumeTheme!=='glass')return;var b=document.getElementById('glass-weather'),d=AtData,v=d.v;if(!v.city||v.lat===null)return;b.hidden=false;function load(){if(document.hidden)return;b.textContent=v.city+' · Consultando previsão…';d.weather().then(function(j){LumeSky.summary(b,v.city,j)},function(){b.textContent=v.city+' · Previsão indisponível'})}load();setInterval(load,1800000);document.addEventListener('visibilitychange',load)})();
+
