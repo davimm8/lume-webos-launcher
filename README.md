@@ -60,6 +60,23 @@ Medições históricas em uma TV LG com webOS 4.x. Cada coluna resume uma rodada
 
 A CPU ativa foi menor na rodada do Lume, mas também havia menos RAM disponível e mais swap em uso. Os contadores abrangem toda a TV, inclusive aplicativos em segundo plano. A Home LG foi medida após cerca de 91 minutos de atividade e o Lume após 19 minutos. Uma rodada por condição não permite atribuir as diferenças ao launcher nem estimar o tempo de resposta do controle.
 
+## Comparativo por tema na TV
+
+Uma segunda coleta comparou a FullHome nativa e os três temas do Lume na mesma TV com webOS 4.10. A tabela acima acompanha a TV inteira. Nesta, memória, CPU e threads se referem ao processo observado: o executável da FullHome ou o processo de renderização do WebAppMgr usado pelo Lume. A última linha conta conexões da TV inteira.
+
+| Métrica | FullHome da LG | Costa (estabilizado) | Ateliê | Liquid Glass |
+|---|---:|---:|---:|---:|
+| RAM residente (VmRSS) | 116,0 MB | 81,2 MB | 75,1 MB | 70,3 MB |
+| Pico de RAM residente (VmHWM) | 146,6 MB | 93,5 MB | 103,3 MB | 103,3 MB |
+| Espaço de endereçamento virtual (VmSize) | 370,0 MB | 451,2 MB | 430,3 MB | 439,5 MB |
+| CPU reportada por ps com a interface em repouso | 3,0% a 19,3% | 3,2% | 3,3% | 3,6% |
+| Threads do processo | 12 | 16 | 17 | 15 |
+| Conexões TCP estabelecidas na TV | 15 a 18 | 8 | 16 | 8 |
+
+**Como ler os resultados.** A coleta via SSH em Developer Mode consultou `/proc/<PID>/status`, `ps` e `netstat`. Após cada troca de tema, aguardaram-se de 10 a 15 segundos. A tabela reproduz o consolidado fornecido após duas baterias de testes, nas unidades informadas (MB). Os valores individuais de cada rodada não estão disponíveis aqui.
+
+O Liquid Glass apresentou a menor RAM residente no momento da leitura. Os três temas compartilharam o mesmo processo de renderização, por isso o pico registrado acompanha o processo desde o início e pode incluir um tema anterior. O RSS também pode incluir páginas compartilhadas. A contagem de conexões inclui sockets de outros processos e conexões mantidas abertas após uma troca de tela. Esses dados, por si só, não medem a economia total de RAM nem a velocidade de navegação.
+
 ## Primeiro uso e privacidade
 
 Os cartões iniciais são sugestões. Em **Demais apps**, atualize a lista e aceite o pareamento na sua TV para descobrir os apps instalados. A lista inicial e a cidade ficam vazias. Em **Preferências → Servidores locais**, configure opcionalmente os endereços do Immich e do Agent DVR. O mosaico aceita até duas câmeras.
