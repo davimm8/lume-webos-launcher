@@ -12,21 +12,28 @@
 \sloppy
 {\LARGE\bfseries Instalar o Lume em uma TV LG}\\[4pt]
 Edição pública 1.0.0 \quad|\quad PowerShell no Windows
+\par\textbf{Arquivos para compartilhar.} Envie este PDF e o arquivo
+\verb|com.lume.launcher_1.0.0_all.ipk|. O IPK já contém o aplicativo e o serviço auxiliar. Cada pessoa instala as ferramentas no próprio computador e faz o pareamento com a própria TV.
 \section*{1. Prepare a TV e o computador}
 Use uma TV LG com webOS e o aplicativo \textbf{Developer Mode} disponível na loja. O alvo inicial é webOS TV 4.x. Conecte TV e computador à mesma rede. Redes de convidados podem isolar dispositivos.
 
 Na loja da TV, instale \textbf{Developer Mode}, entre com sua conta LG Developer, ative \textbf{Dev Mode Status} e aceite a reinicialização. Reabra o aplicativo, ative \textbf{Key Server} e anote o IPv4 da TV. Mantenha essa tela aberta durante o pareamento.
 
-No computador, instale Node.js com npm seguindo os requisitos da \href{https://webostv.developer.lge.com/develop/tools/cli-installation}{LG}. Abra uma nova janela do PowerShell e execute uma linha por vez:
+\textbf{Instale o Node.js no Windows.} Abra \url{https://nodejs.org/en/download}, escolha uma versão LTS e baixe o instalador Windows Installer (\verb|.msi|) para a arquitetura do computador (x64 para Intel ou AMD de 64 bits). Abra o arquivo, aceite a licença, mantenha selecionados o npm e a opção de adicionar ao PATH e conclua em \textbf{Install} e \textbf{Finish}.
+
+Abra uma \textbf{nova} janela do PowerShell. Os dois comandos abaixo apenas exibem as versões instaladas. Continue quando ambos mostrarem um número de versão.
 \begin{verbatim}
 node -v
 npm.cmd -v
+\end{verbatim}
+Instale agora a \href{https://webostv.developer.lge.com/develop/tools/cli-installation}{CLI oficial da LG}, confira sua versão e selecione o perfil de TV:
+\begin{verbatim}
 npm.cmd install -g @webos-tools/cli
 ares.cmd -V
 ares-config.cmd --profile tv
 \end{verbatim}
 Se um comando recém-instalado não for reconhecido, reabra o terminal e confira se o diretório global do npm está no PATH.
-\section*{2. Cadastre e pareie a TV}
+\newpage\section*{2. Cadastre e pareie a TV}
 Use o cadastro interativo para evitar erros de digitação:
 \begin{verbatim}
 ares-setup-device.cmd
@@ -37,15 +44,14 @@ ares-novacom.cmd -d minha-tv --getkey
 ares-device.cmd -d minha-tv --system-info
 \end{verbatim}
 Digite a passphrase mostrada na TV apenas no terminal. O último comando deve mostrar informações da TV. Em caso de timeout, substitua \verb|IP_DA_TV| em \verb|Test-NetConnection IP_DA_TV -Port 9922| e confira a rede. Se a porta responder e a autenticação falhar, reative o Key Server e repita a obtenção da chave.
-\newpage
 \section*{3. Instale e abra}
-Baixe \verb|com.lume.launcher_1.0.0_all.ipk| da pasta \textbf{downloads} do projeto. Abra o PowerShell na pasta onde salvou o arquivo:
+Use o IPK recebido com este guia ou baixe-o da pasta \textbf{downloads} do projeto. Abra o PowerShell na pasta onde salvou o arquivo:
 \begin{verbatim}
 ares-install.cmd -d minha-tv .\com.lume.launcher_1.0.0_all.ipk
 ares-launch.cmd -d minha-tv com.lume.launcher
 \end{verbatim}
 Confirme que o Lume abriu e que as setas movem a seleção. Nas próximas vezes, abra Lume pela lista de aplicativos da LG. O botão Home físico continua abrindo a interface definida pela TV.
-\section*{4. Configure os recursos opcionais}
+\newpage\section*{4. Configure os recursos opcionais}
 \begin{itemize}
 \item \textbf{Apps e temas.} Em Demais apps, atualize a lista e aceite na TV a consulta aos aplicativos instalados. Em Preferências, escolha o tema e organize os cartões. A cidade da previsão é opcional.
 \item \textbf{Câmeras.} Abra Preferências e selecione Servidores locais. Informe o endereço do Agent DVR com protocolo, IPv4 privado e porta. No campo de câmeras, informe um ou dois IDs numéricos. Abra Câmeras para ver o mosaico. O servidor precisa permitir que a TV leia os endpoints de imagem.
@@ -61,4 +67,3 @@ A primeira linha remove o Lume da TV. A segunda remove o cadastro da TV no compu
 
 \textbf{Para reconstruir.} Na raiz do repositório, execute \verb|ares-package.cmd app service -o downloads|. Consulte também o \href{https://webostv.developer.lge.com/develop/getting-started/developer-mode-app}{guia oficial de Developer Mode da LG}.
 \end{document}
-
