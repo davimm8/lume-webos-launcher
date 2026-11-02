@@ -1,10 +1,30 @@
 # Lume para LG webOS TV
 
-Launcher em português para controle remoto, com os temas Liquid Glass, Costa e Ateliê, biblioteca de aplicativos, entradas da TV, câmeras Agent DVR e galeria Immich.
+O Lume reúne as fotos do seu Immich e as câmeras do seu Agent DVR na tela inicial da TV. Com o controle remoto, você pode percorrer a galeria, ampliar uma foto ou acompanhar as câmeras em mosaico. Os três temas também dão acesso aos aplicativos e às entradas da LG.
 
-**[Baixar o aplicativo](downloads/com.lume.launcher_1.0.0_all.ipk)** · **[Instalação em PDF](docs/guia-de-instalacao.pdf)** · [Guia em LaTeX](docs/instalacao.tex)
+**[Baixar o aplicativo](downloads/com.lume.launcher_1.0.0_all.ipk)** · **[Instalação em PDF](docs/instalacao.pdf)** · [Guia em LaTeX](docs/instalacao.tex)
 
 A edição pública usa o ID `com.lume.launcher`. O alvo é webOS TV 4.x com Developer Mode. Apps, entradas e pareamento variam por modelo. O botão Home físico continua sob controle do webOS.
+
+## Conecte sua galeria e suas câmeras
+
+Com a TV e os servidores na mesma rede, abra **Preferências → Servidores locais**. Cada integração é opcional. Informe o endereço do serviço no formato `http://IP_DO_SERVIDOR:PORTA` ou `https://IP_DO_SERVIDOR:PORTA`. Substitua os campos pelo **IPv4 privado do servidor** e pela porta usada na sua instalação. Use apenas o endereço base, sem caminho, usuário ou senha.
+
+### Immich — navegar pelas fotos
+
+1. No navegador do computador, entre no Immich com a conta cuja biblioteca deseja ver na TV. Em **Configurações da conta → Chaves de API**, crie uma chave exclusiva para o Lume. Conceda as permissões de leitura necessárias para consultar fotos e metadados, visualizar miniaturas, listar álbuns, pesquisar e consultar a linha do tempo. A TV exibirá o conteúdo acessível a essa conta.
+2. No Lume, preencha o campo **Immich** em **Servidores locais** e selecione **Salvar**. Abra **Galeria** na tela inicial e digite a chave quando solicitado. O Lume consulta a biblioteca pela API, sem exigir link de compartilhamento de álbum.
+3. Navegue pelas miniaturas com as setas e pressione **OK** para abrir uma foto em tela cheia. Use **Álbuns**, **Local** ou **Ano** para restringir a seleção. A informação de local depende dos metadados disponíveis no servidor.
+
+Se a chave for recusada, confira se ela continua ativa na conta correta. Se a grade abrir, mas um filtro ou as miniaturas falharem, revise as permissões correspondentes. Para retirar o acesso dessa TV, revogue a chave no Immich.
+
+### Agent DVR — acompanhar as câmeras
+
+1. No Agent DVR, confirme que a câmera mostra vídeo e identifique seu ID numérico. Para verificar o ID, abra no computador `http://IP_DO_SERVIDOR:PORTA/grab.jpg?oid=ID`, ajustando também o protocolo se usar HTTPS. O resultado esperado é uma foto atual daquela câmera. [API do Agent DVR](https://www.ispyconnect.com/docs/agent/api)
+2. Em **Servidores locais**, preencha **Agent DVR** com o endereço base. No campo **IDs de câmera**, digite um ID ou dois separados por vírgula, por exemplo `1, 3`. Selecione **Salvar** e abra **Câmeras**.
+3. O mosaico atualiza as imagens periodicamente. Selecione uma câmera e pressione **OK** para abrir o fluxo MJPEG em tela cheia. Se o fluxo estiver indisponível, o Lume tenta atualizar a imagem por capturas sucessivas. **Voltar** retorna ao mosaico.
+
+Se o painel do Agent DVR abrir no computador, mas o mosaico ficar vazio, teste o endereço de captura em uma janela privada do navegador. O Lume precisa conseguir ler as imagens na rede local sem depender da sessão de login do computador. Esta edição não oferece campos para credenciais do Agent DVR.
 
 ## Temas
 
@@ -16,9 +36,13 @@ Prévias da tela inicial da edição pública, renderizadas no navegador em form
 
 ### Costa
 
+A paisagem em tela cheia e a faixa translúcida de aplicativos na parte inferior foram inspiradas no [CleanFrame, de nthnclrk](https://github.com/nthnclrk/CleanFrame).
+
 ![Costa com paisagem em destaque e aplicativos em uma faixa inferior](docs/temas/costa.jpg)
 
 ### Ateliê
+
+A composição com cartões de destaque, faixa de aplicativos e painéis de clima e câmbio acessíveis pela rolagem foi inspirada no [Free My TV, de simbasjungles](https://github.com/simbasjungles/free-my-tv).
 
 ![Ateliê em modo claro com destaques e uma faixa de aplicativos](docs/temas/atelie.jpg)
 
