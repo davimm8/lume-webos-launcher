@@ -2,7 +2,7 @@
 
 Launcher em português para controle remoto, com os temas Liquid Glass, Costa e Ateliê, biblioteca de aplicativos, entradas da TV, câmeras Agent DVR e galeria Immich.
 
-**[Baixar o aplicativo](downloads/com.lume.launcher_1.0.0_all.ipk)** · **[Instalação em PDF](docs/instalacao.pdf)** · [Guia em LaTeX](docs/instalacao.tex)
+**[Baixar o aplicativo](downloads/com.lume.launcher_1.0.0_all.ipk)** · **[Instalação em PDF](docs/guia-de-instalacao.pdf)** · [Guia em LaTeX](docs/instalacao.tex)
 
 A edição pública usa o ID `com.lume.launcher`. O alvo é webOS TV 4.x com Developer Mode. Apps, entradas e pareamento variam por modelo. O botão Home físico continua sob controle do webOS.
 

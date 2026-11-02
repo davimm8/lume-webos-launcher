@@ -10,3 +10,4 @@ node_modules/
 *.aux
 *.out
 work/
+/docs/instalacao.pdf
